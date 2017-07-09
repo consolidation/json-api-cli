@@ -7,6 +7,8 @@ namespace Consolidation\JsonAPI;
  */
 class JsonAPI
 {
+    protected $token;
+
     public function get($url)
     {
         return $this->do($url);
@@ -19,12 +21,17 @@ class JsonAPI
 
     public function hasToken()
     {
-        return false;
+        return isset($this->token);
     }
 
     public function token()
     {
-        return '';
+        return $this->token;
+    }
+
+    public function setToken($token)
+    {
+        $this->token = $token;
     }
 
     protected function do($url, $method = 'GET', $data = [])
@@ -34,10 +41,9 @@ class JsonAPI
             'User-Agent' => 'consolidation/json-api-cli',
         ];
 
-        // TODO: Fix this up. This is how
-        // oauth tokens are passed to GitHub. JSON API may be different.
+        // See https://www.drupal.org/project/simple_oauth
         if ($this->hasToken()) {
-            $headers['Authorization'] = "token " . $this->token();;
+            $headers['Authorization'] = "Bearer " . $this->token();;
         }
 
         $method = 'GET';

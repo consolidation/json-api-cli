@@ -16,6 +16,7 @@ class Commands extends \Robo\Tasks
     {
         $url = $this->expandURL($url, getenv('BASE_URL'));
         $api = new JsonAPI();
+        $api->setToken(getenv('OAUTH_TOKEN'));
         return $api->get($url);
     }
 
