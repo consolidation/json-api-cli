@@ -1,0 +1,45 @@
+{
+    "name": "consolidation/jsonapi-cli",
+    "description": "JSON API cli.",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Greg Anderson",
+            "email": "greg.1.anderson@greenknowe.org"
+        }
+    ],
+    "autoload":{
+        "psr-4":{
+            "Consolidation\\JsonAPI\\CLI\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Consolidation\\JsonAPI\\TestUtils\\": "tests/src"
+        }
+    },
+    "require": {
+        "php": ">=7",
+        "guzzlehttp/guzzle": "^6.2",
+        "consolidation/robo": "^1.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.8",
+        "satooshi/php-coveralls": "^1.0",
+        "squizlabs/php_codesniffer": "^2.7"
+    },
+    "scripts": {
+        "cs": "phpcs --standard=PSR2 -n src",
+        "cbf": "phpcbf --standard=PSR2 -n src",
+        "unit": "SHELL_INTERACTIVE=true phpunit --colors=always",
+        "test": [
+            "@unit",
+            "@cs"
+        ]
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.x-dev"
+        }
+    }
+}
