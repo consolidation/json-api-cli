@@ -10,7 +10,7 @@
     ],
     "autoload":{
         "psr-4":{
-            "Consolidation\\JsonAPI\\CLI\\": "src"
+            "Consolidation\\JsonAPI\\": "src"
         }
     },
     "autoload-dev": {

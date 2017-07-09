@@ -1,41 +1,33 @@
 <?php
 
-namespace Consolidation\JsonAPI\CLI;
+namespace Consolidation\JsonAPI;
 
 /**
  * JSON API CLI commands
  */
-class Commands extends \Robo\Tasks
+class JsonAPI
 {
-    /**
-     * @command get
-     */
-    public function get($url, $options = ['format' => 'yaml'])
+    public function get($url)
     {
-        $url = $this->expandURL($url, getenv('BASE_URL'));
-
-        return $this->jsonAPI($url);
+        return $this->do($url);
     }
 
-    protected function expandURL($url, $base_url)
+    public function post($url, $data)
     {
-        if ((strstr($url, '://') === false) && !empty($base_url)) {
-            return $base_url . '/' . $url;
-        }
-        return $url;
+        return $this->do($url, 'POST', $data);
     }
 
-    protected function hasToken()
+    public function hasToken()
     {
         return false;
     }
 
-    protected function token()
+    public function token()
     {
         return '';
     }
 
-    protected function jsonAPI($url, $data = [])
+    protected function do($url, $method = 'GET', $data = [])
     {
         $headers = [
             'Accept' => 'application/vnd.api+json',
