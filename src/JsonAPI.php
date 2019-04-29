@@ -46,7 +46,6 @@ class JsonAPI
             $headers['Authorization'] = "Bearer " . $this->token();;
         }
 
-        $method = 'GET';
         $guzzleParams = [
             'headers' => $headers,
         ];
